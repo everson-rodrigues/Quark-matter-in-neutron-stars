@@ -22,3 +22,6 @@ Although designed for astrophysical research, the same methodology extends to bu
 In short, the same tools used here to explore the stability of neutron stars can be applied to optimize strategies, validate models, and anticipate critical transitions in business contexts.
 
 It uses a TOV solver in Python allied to a stable f90 code that solves the non-linear coupled equations for the quark matter.
+
+
+PAPER PUBLISHED: Marzola, I., Rodrigues, E. H., Coelho, A. F., & Lourenço, O. (2025). Strange stars admixed with dark matter: equiparticle model in a two fluid approach. Physical Review D, 111(6), 063076. DOI:10.1103/PhysRevD.111.063076
