@@ -54,7 +54,7 @@ while fr<=frf:
     print("---------------------------------------------------------------------")
 
     print(frstr)
-    file_name=f'/home/everson/Documents/Quark-Matter/Data-Fermionic-M=2000,c=1.3/1.3Cv-2kDM-0.005f-2.16Mu_5.15Md_90Ms_0.81C_127D_0a3_ff{frstr}$.dat'
+    file_name=f'youreos.txt'
     print(file_name)
     
     data = pnd.read_csv(file_name,dtype=None, delim_whitespace=True,header=None)
@@ -107,78 +107,20 @@ while fr<=frf:
         return abs(ev)-search/2
     
     def findminimum():
-        results = []
-        ni = int(0.1*nstars) #100 #5
-        nf = nstars-1
-        nm = int((nf+ni)/2.)
-        # ni = nm = nf = 150
-        nim = int((nm+ni)/2.)
-        nmf = int((nm+nf)/2.)
-        nit = 20
-        nsteps = 1
-        while nsteps <= nit:
-            print(nsteps)
-            pool = multiprocessing.Pool(processes=num_processes)
-            for i in [ni, nim, nm, nmf, nf]:
-                # if frc[i] == 0:
-                results.append(pool.apply_async(compute_tov, args=(
-                    i, pn, pd, mn, md, nme, dme, rnm, rdm, rlist)))
     
-            pool.close()
-            pool.join()
-            
-            # Access the results
-            for res in results:
-                res.get()
-            for i in [ni,nim, nm, nmf, nf]:
-                frc[i] = dme[i]/(nme[i]+dme[i])
-            print(ni,nm,nf)
-            print(frc[ni],frc[nm],frc[nf])
-            # print("It, FR, Radius, Mass")
-            # print(ni, frc[ni], rnm[ni] if rnm[ni] > rnm[ni] else rnm[ni], nme[ni]+dme[ni])
-            # print(nm, frc[nm], rnm[nm] if rnm[nm] > rnm[nm] else rnm[nm], nme[nm]+dme[nm])
-            # print(nf, frc[nf], rnm[nf] if rnm[nf] > rnm[nf] else rnm[nf], nme[nf]+dme[nf])
-            # print(abs(frm-frc[ni]), abs(frm-frc[nm]), abs(frm-frc[nf]))
-    
-            if frc[nim] < frc[ni] and frc[nim] < frc[nm]:
-                ni_new = ni
-                nf_new = nm
-                nm_new = int((ni_new+nf_new)/2)
-                nim = int((ni_new+nm_new)/2.)
-                nmf = int((nm_new+nf_new)/2.)
-            elif frc[nmf] < frc[nm] and frc[nmf] < frc[nf]:
-                ni_new = nm
-                nf_new = nf
-                nm_new = int((ni_new+nf_new)/2)
-                nim = int((ni_new+nm_new)/2.)
-                nmf = int((nm_new+nf_new)/2.)
-            else:
-                if frc[nim]<frc[nmf]:
-                    ni_new = ni
-                    nf_new = nm
-                    nm_new = int((ni_new+nf_new)/2)
-                    nim = int((ni_new+nm_new)/2.)
-                    nmf = int((nm_new+nf_new)/2.)
-                elif frc[nmf]<frc[nim]:
-                    ni_new = nm
-                    nf_new = nf
-                    nm_new = int((ni_new+nf_new)/2)
-                    nim = int((ni_new+nm_new)/2.)
-                    nmf = int((nm_new+nf_new)/2.)
-                    
-            
-            ni = ni_new
-            nm = nm_new
-            nf = nf_new
-        
-            nsteps = nsteps+1
-            print('---------------' )
-            if abs(frc[nf]-frc[nm])<=search_fr: break
-        
-        if frc[nm]<frc[nf] and frc[nm]<frc[ni]: nmin=nm
-        if frc[ni]<frc[nf] and frc[ni]<frc[nm]: nmin=ni
-        if frc[nf]<frc[nm] and frc[nf]<frc[ni]: nmin=nf
+##
+##
 
+            
+        
+        ###################      #Some portions of the code are not included in this repository due to confidentiality.
+
+            
+        
+##
+##
+##
+        
         return frc[nmin],nmin
     
     def store(nme, dme, rnm, rdm, nres):
@@ -219,20 +161,18 @@ while fr<=frf:
         sol = spi.solve_ivp(tov_two_fluids, [r_start, r_end], init,
                             method='RK23', max_step=step, events=event,
                             atol=1e-9, rtol=1e-9)
-    
-        rlist[i] = sol.t
-        pn[i] = sol.y[0]
-        pd[i] = sol.y[1]
-        mn[i] = sol.y[2]
-        md[i] = sol.y[3]
-    
 
-        rnm[i] = rlist[i][np.where(pn[i] < search)[0][0]]
-        nme[i] = mn[i][np.where(pn[i] < search)[0][0]]
-    
 
-        rdm[i] = rlist[i][np.where(pd[i] < search)[0][0]]
-        dme[i] = md[i][np.where(pd[i] < search)[0][0]]
+
+
+    
+    
+        ###################      #Some portions of the code are not included in this repository due to confidentiality.
+
+
+
+
+
     
     
         # Format the printed output
@@ -355,53 +295,6 @@ while fr<=frf:
             print(f"Contador= {cont:.0f}")
             nsteps = nsteps+1
             
-
-# =============================================================================
-#             if abs(prof_mass1-(nme[nres]+dme[nres]))<10e-2 and cont>=1:
-#                 print("------------------------------------------------------------------------------")
-#                 list_prof=np.transpose([pn[nres],pd[nres],rlist[nres]])
-#                 frmstr = str("{:.3f}".format(frm))
-# #                 file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/\
-# # cs=0, cn=3.26, Md=1950-Data/NoSRC/TOV/prof_mass-{prof_mass1}-FRM-{frmstr}-NoSRC.dat'
-# #                 file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/\
-# # cs=0, cn=3.26, Md=1950-Data/SRC/TOV/prof_mass-{prof_mass1}-FRM-{frmstr}-SRC.dat'
-#                 with open(file_path, mode='w', newline='') as file:
-#                     writer = csv.writer(file, delimiter='\t')
-#                     writer.writerows(list_prof)
-#                     
-#             if abs(prof_mass2-(nme[nres]+dme[nres]))<10e-2 and cont>=1:
-#                 list_prof=np.transpose([pn[nres],pd[nres],rlist[nres]])
-#                 frmstr = str("{:.3f}".format(frm))
-# #                 file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/\
-# # cs=0, cn=3.26, Md=1950-Data/NoSRC/TOV/prof_mass-{prof_mass2}-FRM-{frmstr}-NoSRC.dat'
-# #                 file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/\
-# # cs=0, cn=3.26, Md=1950-Data/SRC/TOV/prof_mass-{prof_mass2}-FRM-{frmstr}-SRC.dat'
-#                 with open(file_path, mode='w', newline='') as file:
-#                     writer = csv.writer(file, delimiter='\t')
-#                     writer.writerows(list_prof)
-#                     
-#             if abs(prof_mass3-(nme[nres]+dme[nres]))<10e-2 and cont>=1:
-#                 list_prof=np.transpose([pn[nres],pd[nres],rlist[nres]])
-#                 frmstr = str("{:.3f}".format(frm))
-# #                 file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/\
-# # cs=0, cn=3.26, Md=1950-Data/NoSRC/TOV/prof_mass-{prof_mass3}-FRM-{frmstr}-NoSRC.dat'
-# #                 file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/\
-# # cs=0, cn=3.26, Md=1950-Data/SRC/TOV/prof_mass-{prof_mass3}-FRM-{frmstr}-SRC.dat'
-#                 with open(file_path, mode='w', newline='') as file:
-#                     writer = csv.writer(file, delimiter='\t')
-#                     writer.writerows(list_prof)
-#                     
-#             if abs(prof_mass4-(nme[nres]+dme[nres]))<10e-1 and cont>=1:
-#                 list_prof=np.transpose([pn[nres],pd[nres],rlist[nres]])
-#                 frmstr = str("{:.3f}".format(frm))
-# #                 file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/\
-# # cs=0, cn=3.26, Md=1950-Data/NoSRC/TOV/prof_mass-{prof_mass4}-FRM-{frmstr}-NoSRC.dat'
-# #                 file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/\
-# # cs=0, cn=3.26, Md=1950-Data/SRC/TOV/prof_mass-{prof_mass4}-FRM-{frmstr}-SRC.dat'
-#                 with open(file_path, mode='w', newline='') as file:
-#                     writer = csv.writer(file, delimiter='\t')
-#                     writer.writerows(list_prof)
-# =============================================================================
             
             if cont==1:
                 cont=cont+1
@@ -447,12 +340,7 @@ while fr<=frf:
 
     # Specify the file path
     frmstr = str("{:.3f}".format(frm))
-    # # file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/Bosonic-Md=15000-Data/tov-csd=100.00, fr={frstr}, SR=1, FSU2Rsrc.dat'
-    # # file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/Bosonic-Md=15000-Data/tov-csd=100.00, fr={frstr}, SR=0, FSU2Rnew.dat'
-    # # file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/cs=0, cn=3.26, Md=1950-Data/tov-csd=0.10, fr={frstr}, SR=0, FSU2Rnew.dat'
-    # # file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/cs=0, cn=3.26, Md=1950-Data/SRC/TOV/tov-{frmstr}-FRM.dat'
-    # file_path = f'/home/everson/Documents/DM with SRC/Data-SRC/cs=0, cn=3.26, Md=1950-Data/NoSRC/TOV/tov-{frmstr}-FRM-NoSRC.dat'
-    file_path = f'/home/everson/Documents/Quark-Matter/Data-Fermionic-M=2000,c=1.3/tov-1.3Cv-2kDM-0.005f-2.16Mu_5.15Md_90Ms_0.81C_127D_0a3_ff-{frmstr}.dat'
+    file_path = f'output.dat'
     
     #    Open the CSV file in write mode
     with open(file_path, mode='a', newline='') as file:
@@ -462,35 +350,4 @@ while fr<=frf:
 
     
     
-    
-    
-    # # plt.plot(totalmass_frm,starradius_frm)
-    # # plt.xlim(8,15)
-    # # plt.ylim(0.5,2.5)
-    # # fr=0.850
-    # # frstr=str("{:.3f}".format(fr))
-    # # mat_file=f"/home/everson/Documents/DM with SRC/Data-SRC/cs=4, cn=12, Md=2000-Data/tov_12, csd=4, fr={frstr}, SR=1, FSU2Rsrc.dat"
-    # # data = pnd.read_csv(mat_file,dtype=None,delimiter='\t')
-    # # mmat=data.iloc[:,1]
-    # # rmat=data.iloc[:,2]
-    
-    # # # Create a plot
-    # # plt.scatter(rnm, nme, label='Python',marker='o',s=10)
-    # # plt.scatter(mmat, rmat, label='Mathenatica',marker='o',s=10)
-    
-    # # # Add labels and a title
-    # # plt.xlabel('R-axis')
-    # # plt.ylabel('M-axis')
-    # # plt.title('MxR')
-    
-    # # plt.xlim(5,15)
-    # # plt.ylim(0,2)
-    
-    # # # Add a legend
-    # # plt.legend()
-    
-    # # # Add a box around the plot
-    # # plt.box(True)
-    # # plt.grid(True, linestyle='--', alpha=0.7)
-    # # # Show the plot
-    # # plt.show()
+
