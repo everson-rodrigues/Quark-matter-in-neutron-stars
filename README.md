@@ -11,7 +11,7 @@ This program was developed as part of a paper on the presence of quark matter in
 
 Beyond Astrophysics
 
---> Although designed for astrophysical research, the same methodology extends to business and industry:
+Although designed for astrophysical research, the same methodology extends to business and industry:
 
 --> Matrix diagonalization & stability checks → identifying systemic vulnerabilities in finance, logistics, or operations.
 
