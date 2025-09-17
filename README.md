@@ -20,3 +20,5 @@ Although designed for astrophysical research, the same methodology extends to bu
 --> Frequentist parameter estimation → extracting the best-fit market trends, risk levels, or customer behaviors from observed data.
 
 In short, the same tools used here to explore the stability of neutron stars can be applied to optimize strategies, validate models, and anticipate critical transitions in business contexts.
+
+It uses a TOV solver in Python allied to a stable f90 code that solves the non-linear coupled equations for the quark matter.
