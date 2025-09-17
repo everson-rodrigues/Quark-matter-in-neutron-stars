@@ -3,11 +3,11 @@
 
 This program was developed as part of a paper on the presence of quark matter inside neutron stars. It begins by diagonalizing a matrix with derivative-based techniques, which is essential for analyzing system instabilities. 
 
--->Solves coupled differential equations that describe stellar structure.
+--> Solves coupled differential equations that describe stellar structure.
 
--->Applies a frequentist statistical analysis to estimate the parameters that best fit the model.
+--> Applies a frequentist statistical analysis to estimate the parameters that best fit the model.
 
--->Determines the last stable configuration of the star through instability diagonalization.
+--> Determines the last stable configuration of the star through instability diagonalization.
 
 Beyond Astrophysics
 
